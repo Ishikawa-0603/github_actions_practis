@@ -8,7 +8,6 @@ jobs:
         run: |
           echo "hoge=hogehoge" >> $GITHUB_OUTPUT
       - name: print
-        run: |
-          echo "${HOGE}"
         env:
-          HOGE: ${{ steps.output.outputs.hoge}}
+          HOGE: ${{ steps.output.outputs.hoge }}
+        run: echo "${HOGE}"
