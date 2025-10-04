@@ -4,10 +4,10 @@ jobs:
   print:
     runs-on: ubuntu-latest
     steps:
-      - name: output
+      - id: test
         run: |
           echo "hoge=hogehoge" >> $GITHUB_OUTPUT
       - name: print
         env:
-          HOGE: ${{ steps.output.outputs.hoge }}
+          HOGE: ${{ steps.test.outputs.hoge }}
         run: echo "${HOGE}"
