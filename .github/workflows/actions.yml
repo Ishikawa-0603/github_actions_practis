@@ -4,4 +4,9 @@ jobs:
   print:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{ github.actor }}"
+      - run: echo "$(TEST_SECRET)"
+        env:
+          TEST_SECRET: ${{ secrets.TEST_SECRET }}
+      - run: echo "$(vars.TEST_VARIABLE)"
+        env:
+          TEST_VARIABLE: ${{ vars.TEST_VARIABLE }}
