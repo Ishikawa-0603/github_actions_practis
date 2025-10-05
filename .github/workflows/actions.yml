@@ -6,8 +6,4 @@ jobs:
     steps:
       - id: test
         run: |
-          echo "hoge=hugahuga" >> $GITHUB_OUTPUT
-      - name: print
-        env:
-          HOGE: ${{ steps.test.outputs.hoge }}
-        run: echo "${HOGE}"
+          echo "${GITHUB_HEAD_REF}"
