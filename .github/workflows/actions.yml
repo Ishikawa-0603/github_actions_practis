@@ -6,7 +6,7 @@ jobs:
     steps:
       - id: test
         run: |
-          echo "hoge=hogehoge" >> $GITHUB_OUTPUT
+          echo "hoge=hugahuga" >> $GITHUB_OUTPUT
       - name: print
         env:
           HOGE: ${{ steps.test.outputs.hoge }}
