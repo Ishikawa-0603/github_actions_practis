@@ -1,13 +1,17 @@
 name: GITHUB_OUTPUT
 on: push
 jobs:
-  print:
+  before:
     runs-on: ubuntu-latest
     steps:
-      - id: test
-        run: |
-          echo "hoge=hogehoge" >> $GITHUB_OUTPUT
-      - name: print
+      - id: create_var
+        run: echo "name=ishikawa_ryo" >> "${GITHUB_OUTPUT}"
+    outputs:
+      name: ${{ steps.create_var.outputs.name}}
+  after:
+    runs-on: ubuntu-latest
+    needs: before
+    steps:
+      - run: echo "${NAME}"
         env:
-          HOGE: ${{ steps.test.outputs.hoge }}
-        run: echo "${HOGE}"
+          NAME: ${{ needs.before.outputs.name}}
