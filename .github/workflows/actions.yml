@@ -1,18 +1,17 @@
 name: GITHUB_OUTPUT
 on: push
 jobs:
-  first:
+  before:
     runs-on: ubuntu-latest
     steps:
-      - run: sleep 10 && echo "first time"
-  second:
+      - id: create_var
+        run: echo "name=ishikawa_ryo" >> "${GITHUB_OUTPUT}"
+    outputs:
+      name: ${{ steps.create_var.outputs.name}}
+  after:
     runs-on: ubuntu-latest
-    needs: [first]
+    needs: before
     steps:
-      - run: sleep 10 && echo "second time"
-  third:
-    runs-on: ubuntu-latest
-    needs:
-      - first
-    steps:
-      - run: sleep 10 && echo "third time"
+      - run: echo "${NAME}"
+        env:
+          NAME: ${{ needs.before.outputs.name}}
